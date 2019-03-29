@@ -1,6 +1,8 @@
 import java.util.*; //random, scanner, arraylist
 import java.io.*; //file, filenotfoundexception
 
+
+//*******************************CHANGE TO GENERIC*************************************************
 public class MyLinkedList<E>{
   private int length;
   private Node start;
@@ -13,7 +15,7 @@ public class MyLinkedList<E>{
     data = new ArrayList<Integer>();
   }
 
-  //CHANGE TO GENERIC
+  //******************************CHANGE TO GENERIC*************************************************
   //adds Node to MyLinkedList
   public boolean add(Integer value){
     data.add(value);
@@ -58,6 +60,8 @@ public class MyLinkedList<E>{
     return 1;
   }
 
+  //************************COMPLETE THESE METHODS*****************************************
+
   //reset the list to an empty state. Very similar to the constructor.
   public void clear(){
 
@@ -72,7 +76,7 @@ public class MyLinkedList<E>{
 
   // remove the 1st element of the list, and return that value.
   public E removeFront(){
-    
+
   }
 
 

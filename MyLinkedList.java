@@ -1,7 +1,7 @@
 import java.util.*; //random, scanner, arraylist
 import java.io.*; //file, filenotfoundexception
 
-public class MyLinkedList{
+public class MyLinkedList<E>{
   private int length;
   private Node start;
   private Node end;
@@ -13,6 +13,7 @@ public class MyLinkedList{
     data = new ArrayList<Integer>();
   }
 
+  //CHANGE TO GENERIC
   //adds Node to MyLinkedList
   public boolean add(Integer value){
     data.add(value);
@@ -56,6 +57,25 @@ public class MyLinkedList{
   public Integer get(int index){
     return 1;
   }
+
+  //reset the list to an empty state. Very similar to the constructor.
+  public void clear(){
+
+  }
+
+ //  in O(1) time, connect the other list to the end of this list.
+ // The other list is then reset to size 0 (do not wipe out the nodes, just disconnect them.)
+ // This is how you will merge lists together for your radix sort.
+  public void extend(MyLinkedList<E> other){
+
+  }
+
+  // remove the 1st element of the list, and return that value.
+  public E removeFront(){
+    
+  }
+
+
 
   private class Node{
     private int data;

@@ -9,8 +9,6 @@ public class MyLinkedList<E>{
   //constructor
   public MyLinkedList(){
     length = 0;
-    start = null;
-    end = null;
   }
 
   //returns size of MyLinkedList
@@ -18,18 +16,25 @@ public class MyLinkedList<E>{
     return length;
   }
 
-  //accessing Node at specific index
-  private Node getNode(int index){
-    if(index < 0 || index >= length){
-      throw new IndexOutOfBoundsException();
-    }
-    int i = 0;
+  //accessor method for node
+  private Node getNthNode(int index){
+    //loop through the list until you get to the target index
     Node current = start;
-    while(i < index){
+    for(int i = 0; i < index; i++){
       current = current.next();
-      i++;
     }
     return current;
+  }
+
+  //Returns the element at the specified position in this list.
+  //IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
+  public E get(int index){
+    //throw exception if index is out of range
+    if(index < 0 || index >= size()){
+      throw new IndexOutOfBoundsException();
+    }
+    //return the integer at the target index
+    return getNthNode(index).getData();
   }
 
   public String toString(){
@@ -43,22 +48,22 @@ public class MyLinkedList<E>{
     return output;
   }
 
-  //adds Node to MyLinkedList
+  //Appends the specified element to the end of this list.
   public boolean add(E value){
-    Node newVal = new Node(value); //create the Node
+    Node toAdd = new Node(value); //create the Node
     if(length == 0){
-      start = newVal;
-      end = newVal;
+      start = toAdd;
+      end = toAdd;
     }
     if(length == 1){
-      start.setNext(newVal);
-      end = newVal;
+      start.setNext(toAdd);
+      end = toAdd;
       end.setPrev(start);
     }
     if(length > 1){
-      end.setNext(newVal); //newVal added to the end
-      newVal.setPrev(end); //end is now the second to last value
-      end = newVal; //end of Linked List is newVal
+      end.setNext(toAdd); //newVal added to the end
+      toAdd.setPrev(end); //end is now the second to last value
+      end = toAdd; //end of Linked List is newVal
     }
     length++; //size increases by 1 for each new Node
     return true;
@@ -101,7 +106,7 @@ public class MyLinkedList<E>{
       start = null;//start is null
       return temp;
     }
-    start = getNode(1);//Node at index 1 is now the start
+    start = getNthNode(1);//Node at index 1 is now the start
     start.setPrev(null);//no Nodes before the start
     length--;//decrease length by 1
     return temp;

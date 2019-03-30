@@ -1,8 +1,6 @@
 import java.util.*; //random, scanner, arraylist
 import java.io.*; //file, filenotfoundexception
 
-
-//*******************************CHANGE TO GENERIC*************************************************
 public class MyLinkedList<E>{
   private int length;
   private Node start;
@@ -15,9 +13,8 @@ public class MyLinkedList<E>{
     end = null;
   }
 
-  //******************************CHANGE TO GENERIC*************************************************
   //adds Node to MyLinkedList
-  public boolean add(Integer value){
+  public boolean add(E value){
     Node newVal = new Node(value); //create the Node
     if(length == 0){
       start = newVal;
@@ -57,17 +54,32 @@ public class MyLinkedList<E>{
     return 1;
   }
 
-  //************************COMPLETE THESE METHODS*****************************************
-
   //reset the list to an empty state. Very similar to the constructor.
   public void clear(){
+    length = 0;
+    start = null;
+    end = null;
 
   }
 
- //  in O(1) time, connect the other list to the end of this list.
- // The other list is then reset to size 0 (do not wipe out the nodes, just disconnect them.)
- // This is how you will merge lists together for your radix sort.
+  // in O(1) time, connect the other list to the end of this list.
+  // The other list is then reset to size 0 (do not wipe out the nodes, just disconnect them.)
+  // This is how you will merge lists together for your radix sort.
   public void extend(MyLinkedList<E> other){
+    if(size() == 0){
+      start = other.start;
+      end = other.end;
+    }else{
+      length += other.size();//add the lengths together
+      end = other.end;//new end is the end of the other list
+
+      end.setNext(other.start);//connect the end of this list to the start of the other list
+      other.start.setPrev(end);//connect the end of this list to the start of the other list
+      
+      other.length = 0;//length of other list becomes 0 (like deleting it)
+      other.start = null;//like clearing the other list
+      other.end = null;//like clearing the other list
+    }
 
   }
 
@@ -79,15 +91,15 @@ public class MyLinkedList<E>{
 
 
   private class Node{
-    private int data;
+    private E data;
     private Node next, prev;
 
     //constructors
-    public Node(int value){
+    public Node(E value){
       data = value;
     }
 
-    public Node(int value, Node nextNode, Node prevNode){
+    public Node(E value, Node nextNode, Node prevNode){
       data = value;
       next = nextNode;
       prev = prevNode;
@@ -109,11 +121,11 @@ public class MyLinkedList<E>{
       prev = other;
     }
 
-    public Integer getData(){
+    public E getData(){
       return data;
     }
 
-    public Integer setData(Integer i){
+    public E setData(E i){
       data = i;
       return data;
     }

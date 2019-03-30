@@ -26,17 +26,6 @@ public class MyLinkedList<E>{
     return current;
   }
 
-  //Returns the element at the specified position in this list.
-  //IndexOutOfBoundsException - if the index is out of range (index < 0 || index >= size())
-  public E get(int index){
-    //throw exception if index is out of range
-    if(index < 0 || index >= size()){
-      throw new IndexOutOfBoundsException();
-    }
-    //return the integer at the target index
-    return getNthNode(index).getData();
-  }
-
   public String toString(){
     String output = "[";
     Node current = start;

@@ -50,16 +50,11 @@ public class MyLinkedList<E>{
     return output;
   }
 
-  public Integer get(int index){
-    return 1;
-  }
-
   //reset the list to an empty state. Very similar to the constructor.
   public void clear(){
     length = 0;
     start = null;
     end = null;
-
   }
 
   // in O(1) time, connect the other list to the end of this list.
@@ -75,19 +70,41 @@ public class MyLinkedList<E>{
 
       end.setNext(other.start);//connect the end of this list to the start of the other list
       other.start.setPrev(end);//connect the end of this list to the start of the other list
-      
+
       other.length = 0;//length of other list becomes 0 (like deleting it)
       other.start = null;//like clearing the other list
       other.end = null;//like clearing the other list
     }
-
   }
 
   // remove the 1st element of the list, and return that value.
   public E removeFront(){
-
+    if(size() == 0){//an empty list
+      throw new NoSuchElementException();
+    }
+    E temp = start.getData();
+    if(size() == 1){//if only one Node in list
+      start = null;//start is null
+      return temp;
+    }
+    start = getNode(1);//Node at index 1 is now the start
+    start.setPrev(null);//no Nodes before the start
+    length--;//decrease length by 1
+    return temp;
   }
 
+  private Node getNode(int index){
+    if(index < 0 || index >= length){
+      throw new IndexOutOfBoundsException();
+    }
+    int i = 0;
+    Node current = start;
+    while(i < index){
+      current = current.next();
+      i++;
+    }
+    return current;
+  }
 
 
   private class Node{

@@ -13,6 +13,36 @@ public class MyLinkedList<E>{
     end = null;
   }
 
+  //returns size of MyLinkedList
+  public int size(){
+    return length;
+  }
+
+  //accessing Node at specific index
+  private Node getNode(int index){
+    if(index < 0 || index >= length){
+      throw new IndexOutOfBoundsException();
+    }
+    int i = 0;
+    Node current = start;
+    while(i < index){
+      current = current.next();
+      i++;
+    }
+    return current;
+  }
+
+  public String toString(){
+    String output = "[";
+    Node current = start;
+    while(current != null){
+      output += current.getData() + ", ";
+      current = current.next();
+    }
+    output += "]";
+    return output;
+  }
+
   //adds Node to MyLinkedList
   public boolean add(E value){
     Node newVal = new Node(value); //create the Node
@@ -32,22 +62,6 @@ public class MyLinkedList<E>{
     }
     length++; //size increases by 1 for each new Node
     return true;
-  }
-
-  //returns size of MyLinkedList
-  public int size(){
-    return length;
-  }
-
-  public String toString(){
-    String output = "[";
-    Node current = start;
-    while(current != null){
-      output += current.getData() + ", ";
-      current = current.next();
-    }
-    output += "]";
-    return output;
   }
 
   //reset the list to an empty state. Very similar to the constructor.
@@ -91,19 +105,6 @@ public class MyLinkedList<E>{
     start.setPrev(null);//no Nodes before the start
     length--;//decrease length by 1
     return temp;
-  }
-
-  private Node getNode(int index){
-    if(index < 0 || index >= length){
-      throw new IndexOutOfBoundsException();
-    }
-    int i = 0;
-    Node current = start;
-    while(i < index){
-      current = current.next();
-      i++;
-    }
-    return current;
   }
 
 

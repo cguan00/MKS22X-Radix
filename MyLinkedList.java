@@ -7,18 +7,17 @@ public class MyLinkedList<E>{
   private int length;
   private Node start;
   private Node end;
-  private List<Integer> data;
 
   //constructor
   public MyLinkedList(){
     length = 0;
-    data = new ArrayList<Integer>();
+    start = null;
+    end = null;
   }
 
   //******************************CHANGE TO GENERIC*************************************************
   //adds Node to MyLinkedList
   public boolean add(Integer value){
-    data.add(value);
     Node newVal = new Node(value); //create the Node
     if(length == 0){
       start = newVal;
@@ -44,16 +43,14 @@ public class MyLinkedList<E>{
   }
 
   public String toString(){
-    if(length == 0){
-      return "[]";
-    }
     String output = "[";
     Node current = start;
     while(current != null){
       output += current.getData() + ", ";
       current = current.next();
     }
-    return output + "]";
+    output += "]";
+    return output;
   }
 
   public Integer get(int index){

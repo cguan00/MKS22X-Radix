@@ -7,7 +7,9 @@ public class Radix{
     //determining the largest number in the data array
     int max = 0;
     for(int i = 0; i < data.length; i++) {
-      max = Math.max(max, data[i]);
+      if(data[i] > max){
+        max = data[i];
+      }
     }
 
     //created a MyLinkedList bucket for each digit

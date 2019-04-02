@@ -24,9 +24,23 @@ public class Radix{
       passes = 1;
     }
 
-    // System.out.println(max);
-    // System.out.println(passes);
+    // System.out.println("max" + max);
+    // System.out.println("passes" + passes);
 
+    for(int x = 0; x < passes; x++){
+      for(int i = 0; i < data.length; i++){
+        int num = data[i];
+        int digit = digit(num, x);
+        // System.out.println(digit);
+        if(num < 0){//if a negative number
+          // place in buckets[9 - digit]
+          // buckets[9 - digit].add(num);
+        } else{//if a positive number
+          // place in buckets[digit + 10];
+          // buckets[digit + 10].add(num);
+        }
+      }
+    }
 
   }
 
@@ -76,18 +90,18 @@ public class Radix{
     // System.out.println(digit(23,0));//3
     // System.out.println(digit(23,1));//2
 
-    System.out.println(digit(987654321,0));//1
-    System.out.println(digit(987654321,1));//2
-    System.out.println(digit(987654321,2));//3
-    System.out.println(digit(987654321,3));//4
-    System.out.println(digit(987654321,4));//5
-    System.out.println(digit(987654321,5));//6
-    System.out.println(digit(987654321,6));//7
-    System.out.println(digit(987654321,7));//8
-    System.out.println(digit(987654321,8));//9
-
-    System.out.println(digit(-46,0));
-    System.out.println(digit(-46,1));
+    // System.out.println(digit(987654321,0));//1
+    // System.out.println(digit(987654321,1));//2
+    // System.out.println(digit(987654321,2));//3
+    // System.out.println(digit(987654321,3));//4
+    // System.out.println(digit(987654321,4));//5
+    // System.out.println(digit(987654321,5));//6
+    // System.out.println(digit(987654321,6));//7
+    // System.out.println(digit(987654321,7));//8
+    // System.out.println(digit(987654321,8));//9
+    //
+    // System.out.println(digit(-46,0));
+    // System.out.println(digit(-46,1));
 
 
 

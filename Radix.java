@@ -45,7 +45,7 @@ public class Radix{
     }else{
       divFactor = (int) Math.pow(10, pos);//10 ^ pos;
     }
-    return num % modFactor / divFactor;
+    return Math.abs(num % modFactor / divFactor);
   }
 
   public static void main(String[] args) {
@@ -69,12 +69,28 @@ public class Radix{
     // System.out.println(145 % 100 / 10);//4
     // System.out.println(145 % 1000 / 100);//1
 
-    System.out.println(digit(23,0));
-    System.out.println(digit(23,1));
+    // System.out.println((int)Math.pow(10, 1));
+    // System.out.println((int)Math.pow(10,(1 + 1)));
+    // System.out.println((int)Math.pow(10,(2 + 1)));
 
-    System.out.println((int)Math.pow(10, 1));
-    System.out.println((int)Math.pow(10,(1 + 1)));
-    System.out.println((int)Math.pow(10,(2 + 1)));
+    // System.out.println(digit(23,0));//3
+    // System.out.println(digit(23,1));//2
+
+    System.out.println(digit(987654321,0));//1
+    System.out.println(digit(987654321,1));//2
+    System.out.println(digit(987654321,2));//3
+    System.out.println(digit(987654321,3));//4
+    System.out.println(digit(987654321,4));//5
+    System.out.println(digit(987654321,5));//6
+    System.out.println(digit(987654321,6));//7
+    System.out.println(digit(987654321,7));//8
+    System.out.println(digit(987654321,8));//9
+
+    System.out.println(digit(-46,0));
+    System.out.println(digit(-46,1));
+
+
+
   }
 
 }

@@ -16,16 +16,6 @@ public class MyLinkedList<E>{
     return length;
   }
 
-  //accessor method for node
-  private Node getNthNode(int index){
-    //loop through the list until you get to the target index
-    Node current = start;
-    for(int i = 0; i < index; i++){
-      current = current.next();
-    }
-    return current;
-  }
-
   public String toString(){
     String output = "[";
     Node current = start;
@@ -44,12 +34,7 @@ public class MyLinkedList<E>{
       start = toAdd;
       end = toAdd;
     }
-    if(length == 1){
-      start.setNext(toAdd);
-      end = toAdd;
-      end.setPrev(start);
-    }
-    if(length > 1){
+    else{
       end.setNext(toAdd); //newVal added to the end
       toAdd.setPrev(end); //end is now the second to last value
       end = toAdd; //end of Linked List is newVal
@@ -72,32 +57,29 @@ public class MyLinkedList<E>{
     if(size() == 0){
       start = other.start;
       end = other.end;
-    }else{
-      length += other.size();//add the lengths together
-      end = other.end;//new end is the end of the other list
-
+    }else if(other.size() > 0){
       end.setNext(other.start);//connect the end of this list to the start of the other list
       other.start.setPrev(end);//connect the end of this list to the start of the other list
-
-      other.length = 0;//length of other list becomes 0 (like deleting it)
-      other.start = null;//like clearing the other list
-      other.end = null;//like clearing the other list
+      end = other.end;//new end is the end of the other list
     }
-  }
+      length += other.length;//add the lengths together
+      other.clear();
+    }
+
 
   // remove the 1st element of the list, and return that value.
   public E removeFront(){
-    if(size() == 0){//an empty list
+    if(length == 0){//an empty list
       throw new NoSuchElementException();
     }
     E temp = start.getData();
-    if(size() == 1){//if only one Node in list
-      start = null;//start is null
-      return temp;
+    if(length == 1){//if only one Node in list
+      clear();
+    } else{
+      start = start.next();//next node is now the start
+      start.setPrev(null);//no Nodes before the start
+      length--;//decrease length by 1
     }
-    start = getNthNode(1);//Node at index 1 is now the start
-    start.setPrev(null);//no Nodes before the start
-    length--;//decrease length by 1
     return temp;
   }
 

@@ -24,9 +24,6 @@ public class Radix{
       passes = 1;
     }
 
-    // System.out.println("max" + max);
-    // System.out.println("passes" + passes);
-
     //use this to hold the list temporarily
     MyLinkedList<Integer> temp = new MyLinkedList<Integer>();
 
@@ -35,24 +32,20 @@ public class Radix{
         for(int i = 0; i < data.length; i++){
           int num = data[i];
           int digit = digit(num, x);
-          // System.out.println(digit);
           if(num < 0){//if a negative number, place in buckets[9 - digit]
             buckets[9 - digit].add(num);
           } else{//if a positive number, place in buckets[digit + 10];
             buckets[digit + 10].add(num);
-            // System.out.println("added pos");
           }
         }
       } else{//not first pass, look to temp for the values
         while(temp.size() > 0){
           int num = temp.removeFront();
           int digit = digit(num, x);
-          // System.out.println(digit);
           if(num < 0){//if a negative number, place in buckets[9 - digit]
             buckets[9 - digit].add(num);
           } else{//if a positive number, place in buckets[digit + 10];
             buckets[digit + 10].add(num);
-            // System.out.println("added pos");
           }
         }
       }
@@ -61,7 +54,6 @@ public class Radix{
       for(int j = 0; j < buckets.length; j++){
         temp.extend(buckets[j]);
       }
-      // System.out.println("temp" + temp);
     }
 
     //putting the complete list back into the original data array
